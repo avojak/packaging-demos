@@ -1,5 +1,3 @@
-# Derive the package name from the .spec file
-PACKAGE := $(shell basename *.spec .spec)
 # Create the list of --define arguments to pass to rpmbuild, starting with override of _topdir to use our local rpmbuild directory
 RPMBUILD_DEFINITIONS := --define "_topdir %(pwd)/rpmbuild"
 # If CI_VERSION_QUALIFIER is provided, add a --define argument to pass along to rpmbuild
@@ -23,4 +21,4 @@ test:
 
 dist: all
 	cp -r build/* rpmbuild/SOURCES/
-	$(RPMBUILD_CMD) -ba $(PACKAGE).spec
+	$(RPMBUILD_CMD) -ba example.spec
